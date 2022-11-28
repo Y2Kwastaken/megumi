@@ -28,6 +28,11 @@
     </dependency>
     <dependency>
       <groupId>sh.miles.megumi</groupId>
+      <artifactId>item</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>sh.miles.megumi</groupId>
       <artifactId>menu</artifactId>
       <version>${project.parent.version}</version>
     </dependency>

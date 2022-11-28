@@ -11,6 +11,7 @@
   <modules>
     <module>chat</module> 
     <module>command</module>
+    <module>item</module>
     <module>menu</module>
     <module>megumi</module>
     <module>task</module>
