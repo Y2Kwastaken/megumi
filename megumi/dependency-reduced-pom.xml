@@ -3,13 +3,13 @@
   <parent>
     <artifactId>megumi-parent</artifactId>
     <groupId>sh.miles.megumi</groupId>
-    <version>1.0.0-R3-SNAPSHOT</version>
+    <version>1.0.0-R5-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>sh.miles.megumi</groupId>
   <artifactId>megumi</artifactId>
   <name>megumi</name>
-  <version>1.0.0-R3-SNAPSHOT</version>
+  <version>1.0.0-R5-SNAPSHOT</version>
   <url>https://maven.miles.sh</url>
   <build>
     <plugins>

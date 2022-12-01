@@ -24,15 +24,19 @@ public class MaterialTranslator {
         map.put(key, value);
     }
 
-    public void remove(Material key) {
+    public void removeKey(Material key) {
         if (lock) {
             throw new IllegalStateException("MaterialTranslator is locked");
         }
         map.remove(key);
     }
 
-    public Material get(Material key) {
+    public Material getKey(Material key) {
         return map.get(key);
+    }
+
+    public boolean hasKey(Material key) {
+        return map.containsKey(key);
     }
 
     public void lock() {

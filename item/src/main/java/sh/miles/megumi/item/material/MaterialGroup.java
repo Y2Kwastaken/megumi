@@ -41,9 +41,44 @@ public class MaterialGroup {
             Material.IRON_SWORD,
             Material.STONE_SWORD,
             Material.WOODEN_SWORD);
-    public static final MaterialGroup TOOLS = MaterialGroup.of(MaterialGroup.PICKAXES, MaterialGroup.AXES,
-            MaterialGroup.SHOVELS, MaterialGroup.HOES);
-    public static final MaterialGroup WEAPONS = MaterialGroup.of(MaterialGroup.AXES, MaterialGroup.SWORDS);
+    public static final MaterialGroup BOW = MaterialGroup.of(Material.BOW);
+    public static final MaterialGroup HELMETS = MaterialGroup.of(
+            Material.NETHERITE_HELMET,
+            Material.DIAMOND_HELMET,
+            Material.GOLDEN_HELMET,
+            Material.IRON_HELMET,
+            Material.LEATHER_HELMET);
+    // material group for chestplates
+    public static final MaterialGroup CHESTPLATES = MaterialGroup.of(
+            Material.NETHERITE_CHESTPLATE,
+            Material.DIAMOND_CHESTPLATE,
+            Material.GOLDEN_CHESTPLATE,
+            Material.IRON_CHESTPLATE,
+            Material.LEATHER_CHESTPLATE);
+    // material group for leggings
+    public static final MaterialGroup LEGGINGS = MaterialGroup.of(
+            Material.NETHERITE_LEGGINGS,
+            Material.DIAMOND_LEGGINGS,
+            Material.GOLDEN_LEGGINGS,
+            Material.IRON_LEGGINGS,
+            Material.LEATHER_LEGGINGS);
+    // material group for boots
+    public static final MaterialGroup BOOTS = MaterialGroup.of(
+            Material.NETHERITE_BOOTS,
+            Material.DIAMOND_BOOTS,
+            Material.GOLDEN_BOOTS,
+            Material.IRON_BOOTS,
+            Material.LEATHER_BOOTS);
+    // material group for all armor
+    public static final MaterialGroup ARMOR = MaterialGroup.of(HELMETS, CHESTPLATES, LEGGINGS, BOOTS);
+    // material group for all tools
+    public static final MaterialGroup TOOLS = MaterialGroup.of(PICKAXES, AXES, SHOVELS, HOES);
+    // material group for melee weapons
+    public static final MaterialGroup MELEE_WEAPONS = MaterialGroup.of(AXES, SWORDS);
+    // material group for all weapons
+    public static final MaterialGroup ALL_WEAPONS = MaterialGroup.of(MELEE_WEAPONS, BOW);
+    // materail group for all damageable items
+    public static final MaterialGroup DAMAGEABLE = MaterialGroup.of(ARMOR, TOOLS, ALL_WEAPONS);
 
     private final Set<Material> materials;
 
@@ -84,5 +119,5 @@ public class MaterialGroup {
         }
         return group;
     }
-    
+
 }
