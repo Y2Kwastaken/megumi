@@ -15,6 +15,7 @@
     <module>menu</module>
     <module>megumi</module>
     <module>task</module>
+    <module>common</module>
   </modules>
 
 
