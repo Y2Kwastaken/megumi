@@ -16,7 +16,7 @@
 
 ```xml
 <dependency>
-  <groupId>sh.miles.megumi</groupId>
+  <groupId>sh.miles.megumi.core</groupId>
   <artifactId>megumi</artifactId>
   <version><!-- Check Version in pom.xml --></version>
 </dependency>
