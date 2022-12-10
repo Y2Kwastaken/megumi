@@ -9,6 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
 import sh.miles.megumi.core.menu.MenuSession;
+import sh.miles.megumi.core.menu.item.Button;
 
 public class MenuListener implements Listener {
 
@@ -30,7 +31,12 @@ public class MenuListener implements Listener {
         MenuSession ses = session.get();
         if (ses.getMenu().getInventory().equals(e.getClickedInventory())) {
             e.setCancelled(true);
-            ses.getMenu().getButton(e.getSlot()).getAction().execute(player, e);
+            final Button button = ses.getMenu().getButton(e.getSlot());
+            if (button == null) {
+                return;
+            }
+            
+            button.getAction().execute(player, e);
         }
     }
 

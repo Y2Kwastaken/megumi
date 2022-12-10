@@ -18,11 +18,6 @@ public class MenuSession {
     @Getter
     private final Menu menu;
 
-    private MenuSession(@NonNull final Menu menu) {
-        this.menu = menu;
-        menu.init();
-    }
-
     private MenuSession(@NonNull final Menu menu, @NonNull final Player player) {
         this.menu = menu;
         // init

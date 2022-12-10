@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import lombok.Getter;
@@ -45,8 +46,19 @@ public class MegumiCommand implements MegumiCompleter, MegumiExecutor {
      */
     public boolean registerSubCommand(@NonNull final MegumiCommand command) {
         if (subCommands.containsKey(command.getLabel().getName())) {
+            Bukkit.getLogger().warning("Command " + command.getLabel().getName() + " already exists on this command");
             return false;
         }
+
+        for (final String alias : command.getLabel().getAliases()) {
+            if (!subCommands.containsKey(alias)) {
+                subCommands.put(alias, command);
+            } else {
+                Bukkit.getLogger()
+                        .warning("Alias for Command " + command.getLabel().getName() + " already exists: " + alias);
+            }
+        }
+
         subCommands.put(command.getLabel().getName(), command);
         return true;
     }
@@ -81,7 +93,9 @@ public class MegumiCommand implements MegumiCompleter, MegumiExecutor {
             return true;
         }
 
-        return sub.execute(sender, args);
+        final String[] subArgs = new String[args.length - 1];
+        System.arraycopy(args, 1, subArgs, 0, subArgs.length);
+        return sub.execute(sender, subArgs);
     }
 
     @Override
@@ -100,7 +114,9 @@ public class MegumiCommand implements MegumiCompleter, MegumiExecutor {
             return List.of();
         }
 
-        return sub.complete(sender, args);
+        final String[] subArgs = new String[args.length - 1];
+        System.arraycopy(args, 1, subArgs, 0, subArgs.length);
+        return sub.complete(sender, subArgs);
     }
 
     public static void register(@NonNull final MegumiCommand command) {
