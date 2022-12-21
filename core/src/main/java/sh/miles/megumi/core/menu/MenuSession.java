@@ -41,6 +41,8 @@ public class MenuSession {
 
     public static void end(@NonNull final Player player) {
         sessions.remove(player.getUniqueId());
+        player.closeInventory();
+
     }
 
     public static Optional<MenuSession> get(@NonNull final Player player) {

@@ -39,6 +39,14 @@ public class ChatUtil {
         return processedMessage;
     }
 
+    public static List<String> style(@NonNull final List<String> messages) {
+        final List<String> processedMessages = new ArrayList<>();
+        for (final String message : messages) {
+            processedMessages.add(style(message));
+        }
+        return processedMessages;
+    }
+
     public static net.md_5.bungee.api.ChatColor[] gradient(String color0, String color1, int size) {
         net.md_5.bungee.api.ChatColor[] colors = new net.md_5.bungee.api.ChatColor[size];
 

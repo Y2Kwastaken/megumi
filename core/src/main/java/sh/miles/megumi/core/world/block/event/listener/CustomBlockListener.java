@@ -1,5 +1,6 @@
-package sh.miles.megumi.core.world.block.event;
+package sh.miles.megumi.core.world.block.event.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,9 @@ import org.bukkit.plugin.Plugin;
 import com.jeff_media.customblockdata.CustomBlockData;
 
 import sh.miles.megumi.core.world.block.CustomBlock;
+import sh.miles.megumi.core.world.block.event.CustomBlockBreakEvent;
+import sh.miles.megumi.core.world.block.event.CustomBlockInteractEvent;
+import sh.miles.megumi.core.world.block.event.CustomBlockPlaceEvent;
 
 public class CustomBlockListener implements Listener {
 
@@ -34,6 +38,13 @@ public class CustomBlockListener implements Listener {
         container.getKeys().forEach(key -> {
             CustomBlock block = CustomBlock.getBlock(plugin, key);
             if (block != null) {
+                final CustomBlockPlaceEvent customEvent = new CustomBlockPlaceEvent(block,
+                        event.getBlock().getLocation(), event.getPlayer(), event);
+                Bukkit.getPluginManager().callEvent(customEvent);
+                if (customEvent.isCancelled()) {
+                    event.setCancelled(true);
+                    return;
+                }
                 block.onPlace(event);
             }
         });
@@ -55,6 +66,13 @@ public class CustomBlockListener implements Listener {
         data.getKeys().forEach(key -> {
             CustomBlock customBlock = CustomBlock.getBlock(plugin, key);
             if (customBlock != null) {
+                final CustomBlockBreakEvent customEvent = new CustomBlockBreakEvent(customBlock, block.getLocation(),
+                        event.getPlayer(), event);
+                Bukkit.getPluginManager().callEvent(customEvent);
+                if (customEvent.isCancelled()) {
+                    event.setCancelled(true);
+                    return;
+                }
                 customBlock.onBreak(event);
             }
         });
@@ -76,6 +94,13 @@ public class CustomBlockListener implements Listener {
         data.getKeys().forEach(key -> {
             CustomBlock customBlock = CustomBlock.getBlock(plugin, key);
             if (customBlock != null) {
+                final CustomBlockInteractEvent customEvent = new CustomBlockInteractEvent(customBlock,
+                        event.getClickedBlock().getLocation(), event.getPlayer(), event);
+                Bukkit.getPluginManager().callEvent(customEvent);
+                if (customEvent.isCancelled()) {
+                    event.setCancelled(true);
+                    return;
+                }
                 customBlock.onInteract(event);
             }
         });

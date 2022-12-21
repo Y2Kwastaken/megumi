@@ -106,11 +106,22 @@ public class MegumiCommand implements MegumiCompleter, MegumiExecutor {
         }
 
         if (args.length == 1) {
-            return this.subCommands.keySet().stream().toList();
+            return this.subCommands.keySet().stream().filter(s -> {
+                final MegumiCommand sub = subCommands.get(s);
+                if (sub.getLabel().getPermission() == null) {
+                    return true;
+                }
+
+                return sender.hasPermission(sub.getLabel().getPermission());
+            }).toList();
         }
 
         final MegumiCommand sub = subCommands.getOrDefault(args[0], null);
         if (sub == null) {
+            return List.of();
+        }
+
+        if (sub.getLabel().getPermission() != null && !sender.hasPermission(sub.getLabel().getPermission())) {
             return List.of();
         }
 

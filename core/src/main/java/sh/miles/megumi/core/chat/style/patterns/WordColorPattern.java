@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class WordColorPattern implements ChatStylePattern {
 
-    public static final Pattern PATTERN = Pattern.compile("<word:(.*)>");
+    public static final Pattern PATTERN = Pattern.compile("<word:(.+?(?=>))>");
 
     @Override
     // not deprecated for removal just hold over from old code
@@ -15,7 +15,6 @@ public class WordColorPattern implements ChatStylePattern {
         final Matcher matcher = PATTERN.matcher(message);
         while (matcher.find()) {
             final String color = matcher.group(1);
-
             try {
                 final net.md_5.bungee.api.ChatColor possibleColor = net.md_5.bungee.api.ChatColor
                         .valueOf(color.toUpperCase());
