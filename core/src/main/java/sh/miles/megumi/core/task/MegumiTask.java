@@ -48,6 +48,10 @@ public final class MegumiTask {
         }
     }
 
+    public boolean isRunning() {
+        return this.bukkitTask != null;
+    }
+
     public void cancel() {
         if (this.bukkitTask != null) {
             this.bukkitTask.cancel();

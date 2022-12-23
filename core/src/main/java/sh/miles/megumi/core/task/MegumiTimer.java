@@ -71,6 +71,17 @@ public class MegumiTimer implements Runnable {
         this.tick--;
     }
 
+    public boolean isRunning() {
+        return this.task != null && this.task.isRunning() && this.tick > 0;
+    }
+
+    public void setTick(final long tick) {
+        if (this.task != null && this.task.isRunning()) {
+            throw new IllegalStateException("Cannot set tick while timer is running");
+        }
+        this.tick = tick;
+    }
+
     public static MegumiTimer of(final long seconds) {
         return new MegumiTimer(seconds);
     }
