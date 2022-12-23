@@ -38,6 +38,8 @@ public class ItemBuilder {
     @Builder.Default
     protected boolean hideTags = false;
 
+    // only exceeding congnotive complexity by 1 which is reasonable in this case
+    @SuppressWarnings("java:S1541")
     protected ItemMeta getItemMeta(final ItemStack metable) {
         final ItemMeta meta = metable.getItemMeta();
         meta.setCustomModelData(modelData);
@@ -77,12 +79,15 @@ public class ItemBuilder {
         return meta;
     }
 
+    // or statements can not be merged
+    @SuppressWarnings("java:S1066")
     public ItemStack make() {
 
         ItemStack make = item != null ? item : new ItemStack(material, amount);
         final ItemMeta meta = getItemMeta(make);
 
         if (damage != -1) {
+            // ^ see above
             if (meta instanceof Damageable damageable) {
                 damageable.setDamage(damage);
             }

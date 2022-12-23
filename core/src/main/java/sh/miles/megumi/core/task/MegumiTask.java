@@ -8,6 +8,19 @@ import org.bukkit.scheduler.BukkitTask;
 import lombok.RequiredArgsConstructor;
 import sh.miles.megumi.core.PluginDistributor;
 
+/**
+ * MegumiTask is a wrapper for BukkitTask and BukkitScheduler service that
+ * provides more direct and easy to use methods.
+ * <p>
+ * The general issue with BukkitTask is that it is not possible to start it
+ * without a plugin instance. This often leads to weird static instance in a
+ * otherwise dependency injection based structure that the user may be tempted
+ * into abusing
+ * <p>
+ * Thus this class working in tandem with {@link PluginDistributor} provides a
+ * way to create tasks without the need for a static plugin instace or
+ * inconvient dependency injection patterns.
+ */
 @RequiredArgsConstructor
 public final class MegumiTask {
 

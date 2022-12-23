@@ -8,7 +8,15 @@ import java.util.concurrent.TimeUnit;
 
 import lombok.Getter;
 
-public final class MegumiTimer implements Runnable {
+/**
+ * MegumiTimer is a simple timer that can be used to run tasks for given times
+ * <p>
+ * during these times the timer will call the given tasks that are registerd
+ * with {@link #listen(long, Runnable)}
+ * <p>
+ * It is encouraged to extend this class and add functionality to it
+ */
+public class MegumiTimer implements Runnable {
 
     private final Map<Long, Set<Runnable>> tasks;
     @Getter
@@ -18,7 +26,7 @@ public final class MegumiTimer implements Runnable {
     @Getter
     private long tick;
 
-    private MegumiTimer(final long seconds) {
+    protected MegumiTimer(final long seconds) {
         this.tasks = new HashMap<>();
         this.counter = seconds;
         this.tick = seconds;

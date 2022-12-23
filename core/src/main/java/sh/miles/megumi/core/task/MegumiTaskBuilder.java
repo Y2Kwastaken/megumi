@@ -4,6 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import lombok.experimental.SuperBuilder;
 
+/**
+ * MegumiTaskBuilder is used to create a MegumiTask. More about why you should
+ * use MegumiTask over BukkitTask can be found in the MegumiTask class.
+ * {@link MegumiTask}
+ */
 @SuperBuilder
 public class MegumiTaskBuilder {
 

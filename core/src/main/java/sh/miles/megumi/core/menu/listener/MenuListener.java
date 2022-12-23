@@ -11,15 +11,17 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import sh.miles.megumi.core.menu.MenuSession;
 import sh.miles.megumi.core.menu.item.Button;
 
+/**
+ * MenuListener is a listener that handles all the events related to menus.
+ * <p>
+ * It is recommended that you register this listener in your plugin's main class
+ * if you are using {@link AbstractMenus}
+ */
 public class MenuListener implements Listener {
 
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {
-        if (e.getClickedInventory() == null) {
-            return;
-        }
-
-        if (!(e.getWhoClicked() instanceof Player player)) {
+        if (e.getClickedInventory() == null || !(e.getWhoClicked() instanceof Player player)) {
             return;
         }
 
@@ -35,7 +37,7 @@ public class MenuListener implements Listener {
             if (button == null) {
                 return;
             }
-            
+
             button.getAction().execute(player, e);
         }
     }

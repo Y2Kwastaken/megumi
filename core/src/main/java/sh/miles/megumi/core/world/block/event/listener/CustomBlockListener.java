@@ -13,11 +13,22 @@ import org.bukkit.plugin.Plugin;
 
 import com.jeff_media.customblockdata.CustomBlockData;
 
-import sh.miles.megumi.core.world.block.CustomBlock;
+import sh.miles.megumi.core.world.block.AbstractCustomBlock;
 import sh.miles.megumi.core.world.block.event.CustomBlockBreakEvent;
 import sh.miles.megumi.core.world.block.event.CustomBlockInteractEvent;
 import sh.miles.megumi.core.world.block.event.CustomBlockPlaceEvent;
 
+/**
+ * CustomBlockListener provides a general listener for custom blocks managing
+ * any complexities that may arise with custom block implementation logic as far
+ * as events go
+ * <p>
+ * It manages the block break, and place as well as interact events to ensure
+ * flow
+ * <p>
+ * If you wish to implement custom blocks into your plugin, you should register
+ * this listener
+ */
 public class CustomBlockListener implements Listener {
 
     private final Plugin plugin;
@@ -38,7 +49,7 @@ public class CustomBlockListener implements Listener {
 
         PersistentDataContainer container = item.getItemMeta().getPersistentDataContainer();
         container.getKeys().forEach(key -> {
-            CustomBlock block = CustomBlock.getBlock(plugin, key);
+            AbstractCustomBlock block = AbstractCustomBlock.getBlock(plugin, key);
             if (block != null) {
                 final CustomBlockPlaceEvent customEvent = new CustomBlockPlaceEvent(block,
                         event.getBlock().getLocation(), event.getPlayer(), event);
@@ -68,7 +79,7 @@ public class CustomBlockListener implements Listener {
 
         CustomBlockData data = new CustomBlockData(block, this.plugin);
         data.getKeys().forEach(key -> {
-            CustomBlock customBlock = CustomBlock.getBlock(plugin, key);
+            AbstractCustomBlock customBlock = AbstractCustomBlock.getBlock(plugin, key);
             if (customBlock != null) {
                 final CustomBlockBreakEvent customEvent = new CustomBlockBreakEvent(customBlock, block.getLocation(),
                         event.getPlayer(), event);
@@ -98,7 +109,7 @@ public class CustomBlockListener implements Listener {
 
         CustomBlockData data = new CustomBlockData(block, this.plugin);
         data.getKeys().forEach(key -> {
-            CustomBlock customBlock = CustomBlock.getBlock(plugin, key);
+            AbstractCustomBlock customBlock = AbstractCustomBlock.getBlock(plugin, key);
             if (customBlock != null) {
                 final CustomBlockInteractEvent customEvent = new CustomBlockInteractEvent(customBlock,
                         event.getClickedBlock().getLocation(), event.getPlayer(), event);

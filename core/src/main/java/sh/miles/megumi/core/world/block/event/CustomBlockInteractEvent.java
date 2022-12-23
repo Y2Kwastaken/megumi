@@ -9,8 +9,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import sh.miles.megumi.core.world.block.CustomBlock;
+import sh.miles.megumi.core.world.block.AbstractCustomBlock;
 
+/**
+ * CustomBlockInteractEvent is fired when a player interacts with a custom block
+ */
 @Getter
 @RequiredArgsConstructor
 public class CustomBlockInteractEvent extends Event implements Cancellable {
@@ -19,7 +22,7 @@ public class CustomBlockInteractEvent extends Event implements Cancellable {
 
     private boolean cancelled;
 
-    private final CustomBlock block;
+    private final AbstractCustomBlock block;
     private final Location location;
     private final Player player;
     private final PlayerInteractEvent parent;

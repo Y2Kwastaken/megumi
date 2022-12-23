@@ -4,6 +4,12 @@ import org.bukkit.command.CommandSender;
 
 import lombok.NonNull;
 
+/**
+ * A functional interface for executing a MegumiCommand
+ * this interface is used instead of bukkit's {@link CommandExecutor} interface
+ * because it removes the redundant label argument which is prone to be abused
+ * or ignored
+ */
 public interface MegumiExecutor {
 
     /**

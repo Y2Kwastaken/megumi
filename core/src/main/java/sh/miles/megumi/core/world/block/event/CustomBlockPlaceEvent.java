@@ -9,8 +9,11 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import sh.miles.megumi.core.world.block.CustomBlock;
+import sh.miles.megumi.core.world.block.AbstractCustomBlock;
 
+/**
+ * CustomBlockPlaceEvent is fired when a custom block is placed in the world.
+ */
 @Getter
 @RequiredArgsConstructor
 public class CustomBlockPlaceEvent extends Event implements Cancellable {
@@ -19,7 +22,7 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
 
     private boolean cancelled;
 
-    private final CustomBlock block;
+    private final AbstractCustomBlock block;
     private final Location location;
     private final Player player;
     private final BlockPlaceEvent event;

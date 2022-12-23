@@ -7,6 +7,9 @@ import org.bukkit.persistence.PersistentDataType;
 
 import sh.miles.megumi.core.Utils;
 
+/**
+ * Provides an easy way to create a PersistentDataType that serializes
+ */
 public class CustomSerializedDataType<T extends Serializable> implements PersistentDataType<byte[], T> {
 
     private final Class<T> type;

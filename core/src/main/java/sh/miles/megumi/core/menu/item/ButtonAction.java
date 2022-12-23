@@ -6,23 +6,23 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 public interface ButtonAction {
 
-    void execute(Player player, InventoryClickEvent event);
-
-    public static final ButtonAction EMPTY = (player, event) -> {
+    ButtonAction EMPTY = (Player player, InventoryClickEvent event) -> {
     };
-    public static final ButtonAction CLOSE = (player, event) -> {
+
+    ButtonAction CLOSE = (Player player, InventoryClickEvent event) -> {
         player.closeInventory();
     };
-    public static final ButtonAction ALLOW_CLICK = (player, event) -> {
+
+    ButtonAction ALLOW_CLICK = (Player player, InventoryClickEvent event) -> {
         event.setCancelled(false);
     };
 
-    public static ButtonAction PLAY_SOUND(final Sound sound, final float volume, final float pitch) {
-        return (player, event) -> {
+    void execute(Player player, InventoryClickEvent event);
+
+    static ButtonAction playSound(final Sound sound, final float volume, final float pitch) {
+        return (Player player, InventoryClickEvent event) -> {
             player.playSound(player.getLocation(), sound, volume, pitch);
         };
     }
-
-    
 
 }

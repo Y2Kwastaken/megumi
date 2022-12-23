@@ -16,7 +16,33 @@ import lombok.Setter;
 import sh.miles.megumi.core.menu.item.Button;
 import sh.miles.megumi.core.menu.item.ButtonAction;
 
-public abstract class Menu {
+/**
+ * AbstractMenu is a wrapper class for bukkit's {@link Inventory} class that has
+ * numerous advantages over the bukkit class.
+ * <p>
+ * The first advantage is that it is abstract and can must be extended to be
+ * used for delibrate purposes that are clear and concise
+ * <p>
+ * The second advantage is that every menu has a {@link #getViewer()} method
+ * that
+ * allows direct access to the player that is viewing the menu this is useful as
+ * it allows you to make player specific changes to the menu
+ * <p>
+ * The third advantage is that it has {@link Button} support which allows event
+ * driven items. Instead of hacking together a system to handle events for items
+ * in bukkits {@link InventoryClickEvent}
+ * you can use the {@link Button} class to handle events for the specific item
+ * at hand seperately from the rest of the menu logic. This allows for much
+ * clearer button fuctionality as well. Since you aren't concerned with slot
+ * logic or item specifities that would trigger the click.
+ * <p>
+ * The fourth advantage is that it has a {@link MenuSession} system that allows
+ * you to keep track of the menu that a player is viewing. This allows you to
+ * have multiple menus open at once and to have a menu that is open for a player
+ * at all times. This is useful for things like a player's inventory menu or a
+ * player's settings menu.
+ */
+public abstract class AbstractMenu {
 
     @Getter
     protected final Inventory inventory;
@@ -30,7 +56,7 @@ public abstract class Menu {
     @Getter(value = AccessLevel.PROTECTED)
     private Player viewer;
 
-    protected Menu(String title, int size) {
+    protected AbstractMenu(String title, int size) {
         this.title = title;
         this.inventory = Bukkit.createInventory(null, size, title);
         this.items = new HashMap<>();

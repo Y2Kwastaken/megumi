@@ -7,7 +7,16 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-public class ConfigUtils {
+/**
+ * A utility class for creating and managing config files
+ * 
+ * @implNote
+ *           {@link #getConfigFile(Plugin, String)} and
+ *           {@link #createConfig(Plugin, String)} are heavy methods and should
+ *           be used sparingly it is recommended to only use these on pluing
+ *           startup
+ */
+public final class ConfigUtils {
 
     private ConfigUtils() {
     }

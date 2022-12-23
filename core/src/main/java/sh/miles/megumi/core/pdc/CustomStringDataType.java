@@ -6,6 +6,16 @@ import java.lang.reflect.Method;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
 
+/**
+ * Provides an easy way to create a PersistentDataType that serializes into a
+ * string
+ * 
+ * @implNote
+ *           This class uses reflection to call the non-static method
+ *           fromString(String) on the class being serialized
+ *           if this method does not exist, or is not public, it will throw an
+ *           illegal access exception
+ */
 public class CustomStringDataType<T> implements PersistentDataType<String, T> {
 
     private final Class<T> clazz;

@@ -9,6 +9,15 @@ import org.bukkit.World;
 import lombok.Data;
 import lombok.NonNull;
 
+/**
+ * This class is a lightweight version of bukkit's {@link Location} class.
+ * <p>
+ * It is safe to store in maps and databases because it does not contain any
+ * information that may cause memory leaks.
+ * <p>
+ * This class is immutable and thread-safe. You can safely store it and
+ * translate it into locations
+ */
 @Data
 public class LightLocation implements Serializable {
 
@@ -32,7 +41,7 @@ public class LightLocation implements Serializable {
     }
 
     protected static final class WorldNotFoundException extends RuntimeException {
-        
+
         private static final long serialVersionUID = 1L;
 
         public WorldNotFoundException(String worldName) {

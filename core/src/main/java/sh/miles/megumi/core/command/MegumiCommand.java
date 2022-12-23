@@ -13,7 +13,22 @@ import lombok.Setter;
 import sh.miles.megumi.core.command.bridge.BridgeCommand;
 
 /**
- * Represents a command that can be executed by a CommandSender
+ * A MegumiCommand is a wrapper for bukkit's Command system that allows for
+ * registartion of commands without using the plugin.yml file
+ * <p>
+ * The numerour other benefits of this system are the following:
+ * <ul>
+ * <li>A flexible system that allows for subcommands and automatically completes
+ * for them with permissions thought through</li>
+ * <li>Allows for the use of {@link MegumiCompleter} and {@link MegumiExecutor}
+ * which remove redundancies and the abuse of the label argument</li>
+ * <li>Allows for the use of {@link MegumiLabel} which allows for easy creation
+ * of Labels</li>
+ * </ul>
+ * <p>
+ * It is also worth noting that MegumiCommand class can also be used as a
+ * subcommand and its label would then be the name of the subcommand and its
+ * aliases and permissions follow suite.
  */
 public class MegumiCommand implements MegumiCompleter, MegumiExecutor {
 

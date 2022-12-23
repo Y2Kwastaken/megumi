@@ -15,12 +15,19 @@ import lombok.NonNull;
 import sh.miles.megumi.core.command.MegumiCommand;
 
 /**
- * Not meant to be used by api.
+ * BridgeCommand is a wrapper for bukkit's {@link BukkitCommand} class
+ * <p>
+ * This class is used to bridge the gap between MegumiCommand and Bukkit's
+ * command system. It can be seen as an interpreter of sorts.
  * 
  * @implNote
- *           By using you accept that you are responsible for any problems that
- *           may arise from using this class.
+ *           <p>
+ *           This class is not intended to be used by the end user and is only
+ *           used internally by Megumi to register commands with bukkit. Use of
+ *           this class may break things
  */
+// Trivial warnings so suppression is justified
+@SuppressWarnings("all")
 public class BridgeCommand extends BukkitCommand {
 
     private static final Field COMMAND_MAP_FIELD;
@@ -41,7 +48,7 @@ public class BridgeCommand extends BukkitCommand {
 
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException e) {
             e.printStackTrace();
-            throw new RuntimeException("Failed to get command map from plugin manager");
+            throw new IllegalStateException("Failed to get command map from plugin manager");
         }
     }
 

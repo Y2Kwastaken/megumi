@@ -20,11 +20,19 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 
-public abstract class CustomBlock {
+/**
+ * Abstract class for custom blocks.
+ * <p>
+ * This class handles the registration and persistence / data of custom blocks
+ * <p>
+ * This class handles placing and breaking of custom blocks and drops the item
+ * when broken
+ */
+public abstract class AbstractCustomBlock {
 
     // this is a registry method, so we can suppress the fact its not comparable
     @SuppressWarnings("java:S6411")
-    private static final Map<Plugin, Map<NamespacedKey, CustomBlock>> blocks = new HashMap<>();
+    private static final Map<Plugin, Map<NamespacedKey, AbstractCustomBlock>> blocks = new HashMap<>();
 
     @Getter(value = AccessLevel.PROTECTED)
     private final NamespacedKey key;
@@ -33,7 +41,7 @@ public abstract class CustomBlock {
     private final Plugin plugin;
 
     @NonNull
-    protected CustomBlock(final Plugin plugin, final String key, final ItemStack item) {
+    protected AbstractCustomBlock(final Plugin plugin, final String key, final ItemStack item) {
         this.key = new NamespacedKey(plugin, key);
         this.item = item;
 
@@ -47,7 +55,7 @@ public abstract class CustomBlock {
     public ItemStack getItem() {
         return item.clone();
     }
-
+    
     public void onPlace(BlockPlaceEvent event) {
 
         final ItemStack eventItem = event.getItemInHand();
@@ -87,34 +95,34 @@ public abstract class CustomBlock {
 
     public abstract void onInteract(PlayerInteractEvent event);
 
-    public static final void register(CustomBlock block) {
-        if (!CustomBlock.blocks.containsKey(block.plugin)) {
-            CustomBlock.blocks.put(block.plugin, new HashMap<>());
+    public static final void register(AbstractCustomBlock block) {
+        if (!AbstractCustomBlock.blocks.containsKey(block.plugin)) {
+            AbstractCustomBlock.blocks.put(block.plugin, new HashMap<>());
         }
 
-        if (CustomBlock.blocks.get(block.plugin).containsKey(block.key)) {
+        if (AbstractCustomBlock.blocks.get(block.plugin).containsKey(block.key)) {
             throw new IllegalArgumentException("A block with the key " + block.key + " already exists!");
         }
 
         block.plugin.getLogger().info(() -> "Registering CustomBlock " + block.key);
-        CustomBlock.blocks.get(block.plugin).put(block.key, block);
+        AbstractCustomBlock.blocks.get(block.plugin).put(block.key, block);
     }
 
-    public static CustomBlock getBlock(final Plugin plugin, final String key) {
+    public static AbstractCustomBlock getBlock(final Plugin plugin, final String key) {
         return blocks.get(plugin).get(new NamespacedKey(plugin, key));
     }
 
-    public static CustomBlock getBlock(final Plugin plugin, final NamespacedKey key) {
+    public static AbstractCustomBlock getBlock(final Plugin plugin, final NamespacedKey key) {
         return blocks.get(plugin).get(key);
     }
 
     // this is a registry method, so we can suppress the fact its not comparable
     @SuppressWarnings("java:S6411")
-    public static Map<NamespacedKey, CustomBlock> getBlockMap(final Plugin plugin) {
+    public static Map<NamespacedKey, AbstractCustomBlock> getBlockMap(final Plugin plugin) {
         return new HashMap<>(blocks.get(plugin));
     }
 
-    public static Set<CustomBlock> getBlockSet(final Plugin plugin) {
+    public static Set<AbstractCustomBlock> getBlockSet(final Plugin plugin) {
         return Set.copyOf(blocks.get(plugin).values());
     }
 

@@ -6,7 +6,12 @@ import org.bukkit.persistence.PersistentDataType;
 
 import sh.miles.megumi.core.world.LightLocation;
 
-public class CustomPersistentDataType {
+/**
+ * CustomPersistentDataType is a utility class that houses custom
+ * PersistentDataTypes you can make use of your own CustomPersistentDataTypes
+ * created using other classes in this package.
+ */
+public final class CustomPersistentDataType {
 
     public static final PersistentDataType<byte[], LightLocation> LIGHT_LOCATION = new CustomSerializedDataType<>(
             LightLocation.class);

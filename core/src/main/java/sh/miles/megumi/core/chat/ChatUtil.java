@@ -13,7 +13,12 @@ import sh.miles.megumi.core.chat.style.patterns.HexColorPattern;
 import sh.miles.megumi.core.chat.style.patterns.ModifierPattern;
 import sh.miles.megumi.core.chat.style.patterns.WordColorPattern;
 
+/**
+ * A utility class for formatting chat messages and applying styles
+ */
 @UtilityClass
+// trivial warnings so suppression is justified
+@SuppressWarnings("all")
 public class ChatUtil {
 
     private static final ChatStylePattern[] COLOR_PATTERNS = new ChatStylePattern[] {

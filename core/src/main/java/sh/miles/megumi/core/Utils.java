@@ -9,14 +9,20 @@ import java.io.Serializable;
 
 import lombok.NonNull;
 
-public class Utils {
+/**
+ * Extremely general utility class.
+ * <p>
+ * This class is extremely volatile and may change at any time.
+ * It is encouraged to not use this class in your code / implementation.
+ */
+public final class Utils {
 
     private Utils() {
         throw new IllegalStateException("Utility class");
     }
 
     @NonNull
-    public static final <T extends Serializable> byte[] serialize(T object) {
+    public static <T extends Serializable> byte[] serialize(T object) {
         // serialize object
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -29,9 +35,8 @@ public class Utils {
         return new byte[0];
     }
 
-    @NonNull
     @SuppressWarnings("unchecked")
-    public static final <T extends Serializable> T deserialize(byte[] bytes) {
+    public static <T extends Serializable> T deserialize(@NonNull byte[] bytes) {
         // deserialize object
         try (ByteArrayInputStream bais = new ByteArrayInputStream(bytes)) {
             ObjectInputStream ois = new ObjectInputStream(bais);
