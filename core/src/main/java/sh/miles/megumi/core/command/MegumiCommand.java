@@ -99,6 +99,8 @@ public class MegumiCommand implements MegumiCompleter, MegumiExecutor {
     }
 
     @Override
+    // java:S2211 and java:S1142 are suppressed
+    @SuppressWarnings("all")
     public List<String> complete(CommandSender sender, String[] args) {
 
         if (completer != null) {

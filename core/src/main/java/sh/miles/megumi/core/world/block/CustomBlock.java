@@ -22,6 +22,8 @@ import lombok.NonNull;
 
 public abstract class CustomBlock {
 
+    // this is a registry method, so we can suppress the fact its not comparable
+    @SuppressWarnings("java:S6411")
     private static final Map<Plugin, Map<NamespacedKey, CustomBlock>> blocks = new HashMap<>();
 
     @Getter(value = AccessLevel.PROTECTED)
@@ -106,6 +108,8 @@ public abstract class CustomBlock {
         return blocks.get(plugin).get(key);
     }
 
+    // this is a registry method, so we can suppress the fact its not comparable
+    @SuppressWarnings("java:S6411")
     public static Map<NamespacedKey, CustomBlock> getBlockMap(final Plugin plugin) {
         return new HashMap<>(blocks.get(plugin));
     }

@@ -31,7 +31,8 @@ public class LightLocation implements Serializable {
         return new Location(world, x, y, z);
     }
 
-    protected final class WorldNotFoundException extends RuntimeException {
+    protected static final class WorldNotFoundException extends RuntimeException {
+        
         private static final long serialVersionUID = 1L;
 
         public WorldNotFoundException(String worldName) {

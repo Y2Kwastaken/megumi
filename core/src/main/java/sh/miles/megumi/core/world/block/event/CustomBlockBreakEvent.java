@@ -24,7 +24,6 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     private final Player player;
     private final BlockBreakEvent parent;
 
-
     @Override
     public boolean isCancelled() {
         return this.cancelled;
@@ -40,6 +39,8 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     }
 
     @Override
+    // suppress warning because we know what we are doing here
+    @SuppressWarnings("java:S4144")
     public HandlerList getHandlers() {
         return HANDLERS;
     }

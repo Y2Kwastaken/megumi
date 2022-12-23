@@ -27,6 +27,8 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
+    // Verbosity is required here
+    @SuppressWarnings("all")
     public void onBlockPlace(BlockPlaceEvent event) {
 
         final ItemStack item = event.getItemInHand();
@@ -51,6 +53,8 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
+    // Verbosity is required here
+    @SuppressWarnings("all")
     public void onBlockBreak(BlockBreakEvent event) {
 
         Block block = event.getBlock();
@@ -79,6 +83,8 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
+    // Verbosity is required here
+    @SuppressWarnings("all")
     public void onBlockInteract(PlayerInteractEvent event) {
 
         Block block = event.getClickedBlock();

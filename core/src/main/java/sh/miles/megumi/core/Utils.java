@@ -11,6 +11,10 @@ import lombok.NonNull;
 
 public class Utils {
 
+    private Utils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     @NonNull
     public static final <T extends Serializable> byte[] serialize(T object) {
         // serialize object

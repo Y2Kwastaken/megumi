@@ -29,6 +29,8 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
     }
 
     @Override
+    // suppress warning because we know what we are doing here
+    @SuppressWarnings("java:S4144")
     public HandlerList getHandlers() {
         return HANDLERS;
     }
